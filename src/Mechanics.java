@@ -73,6 +73,20 @@ public class Mechanics {
     }
 
 
+    /**
+     * Iterates through a list of buttons and returns the first button that has no text.
+     */
+    public JButton findEmptyButton(List<List<JButton>> inputList) {
+        for (List<JButton> list : inputList) {
+            for(JButton button : list) {
+                if(button.getText().isEmpty()){
+                    return button;
+                }
+            }
+        }
+        return null;
+    }
+
     public void solvePuzzle() {
 
     }
