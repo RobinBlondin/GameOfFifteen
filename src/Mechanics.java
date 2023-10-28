@@ -1,17 +1,12 @@
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Mechanics {
-    private UI ui;
+    private final UI ui;
 
     public Mechanics(UI ui) {
         this.ui = ui;
     }
-
-    public Mechanics() {}   //skapde default konstruktor
 
     public List<List<JButton>> createList(JButton[][] array) {
         List<List<JButton>> list = new ArrayList<>();
