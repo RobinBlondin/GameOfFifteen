@@ -50,6 +50,17 @@ public class Mechanics {
     }
 
 
+    /**
+     * Takes a 2d list as input and returns it as a normal list.
+     */
+    public List<JButton> createFlatList(List<List<JButton>> inputList) {
+        List<JButton> list = new ArrayList<>();
+        for(List<JButton> l : inputList) {
+            list.addAll(l);
+        }
+        return list;
+    }
+
     public void solvePuzzle() {
 
     }
