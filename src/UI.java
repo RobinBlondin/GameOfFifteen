@@ -53,6 +53,7 @@ public class UI extends JFrame /*implements ActionListener */{  //implement till
             }
         }
         shuffle.addActionListener(new EventHandler(this, m));
+        godMode.addActionListener(new EventHandler(this, m));
     }
 
     /*@Override
