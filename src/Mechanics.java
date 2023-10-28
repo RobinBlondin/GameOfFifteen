@@ -34,6 +34,22 @@ public class Mechanics {
         return list;
     }
 
+    /**
+     * Takes a 2d list and a button as input and swaps the text of the input button with the empty button
+     * and returns the new updated list.
+     */
+    public List<List<JButton>> swapButtons(List<List<JButton>> inputList, JButton clickedButton) {
+        List<JButton> list = createFlatList(inputList);
+
+        int indexClickedButton = list.indexOf(clickedButton);
+        int indexOfEmptyButton = list.indexOf(findEmptyButton(inputList));
+
+        list.get(indexOfEmptyButton).setText(clickedButton.getText());
+        list.get(indexClickedButton).setText("");
+        return create2dList(list);
+    }
+
+
     public void solvePuzzle() {
 
     }
