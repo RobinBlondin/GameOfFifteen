@@ -1,39 +1,37 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.*;
 import java.util.List;
 
 
 //testtext
-public class UI extends JFrame implements ActionListener {  //implement tillfälligt
+public class UI extends JFrame /*implements ActionListener */{  //implement tillfälligt
 
-    Mechanics m = new Mechanics();
+    Mechanics m = new Mechanics(this);
     JPanel window = new JPanel();
     JPanel board = new JPanel();
     JPanel buttonPanel = new JPanel();
 
     JButton[][] buttons = new JButton[4][4];
-
     JButton shuffle = new JButton("Shuffle");
     JButton godMode = new JButton("God Mode");
 
     List<List<JButton>> Lista = m.createList(buttons);
-    List<List<JButton>> Lista2 = m.createList(buttons);   //kanske kan använda denna senare vid "god mode", denna shufflas aldrig?
+    List<List<JButton>> sortedList = m.createList(buttons);   //kanske kan använda denna senare vid "god mode", denna shufflas aldrig?
 
     int counter = 1;
 
     public UI() {
-        for (int i = 0; i < buttons.length; i++) {
-            for (int j = 0; j < buttons.length; j++) {
+
+         /*for (int i = 0; i < buttons.length; i++) {
+            for (int j = 0; j < buttons[i].length; j++) {
                 buttons[i][j] = new JButton(counter == 16 ? "" : String.valueOf(counter));
-                buttons[i][j].addActionListener(new EventHandler());
+                buttons[i][j].addActionListener(new EventHandler(this, m));
                 counter++;
             }
-        }
+        } */
+      m.initializeButtons(buttons);
 
-        buttons[3][3].setEnabled(false);        //inaktiverar en button
+        //buttons[3][3].setEnabled(false);        //inaktiverar en button
 
         add(window);
         setVisible(true);
@@ -48,7 +46,7 @@ public class UI extends JFrame implements ActionListener {  //implement tillfäl
         window.add(board, BorderLayout.CENTER);
         window.add(buttonPanel, BorderLayout.SOUTH);
 
-        Lista = m.shuffleBoard(Lista);
+        //Lista = m.shuffleBoard(Lista);
 
         board.setLayout(new GridLayout(4, 4));
         for (List<JButton> buttonList : Lista) {
@@ -56,15 +54,11 @@ public class UI extends JFrame implements ActionListener {  //implement tillfäl
                 board.add(button);
             }
         }
-
-        //shuffle.addActionListener(new EventHandler(Lista));
-        shuffle.addActionListener(this);
-
-        //window.setSize(500,500);
-        //window.setVisible(true);
+        shuffle.addActionListener(new EventHandler(this, m));
+        godMode.addActionListener(new EventHandler(this, m));
     }
 
-    @Override
+    /*@Override
     public void actionPerformed(ActionEvent e) {
 
         List<List<JButton>> shuffledList = m.shuffleBoard(Lista);
@@ -76,29 +70,15 @@ public class UI extends JFrame implements ActionListener {  //implement tillfäl
             }
         }
 
-    }
+    }*/
 
 
     public static void main(String[] args) {
         UI ui = new UI();
         Mechanics m = new Mechanics(ui);
-        List<List<JButton>> newList = m.createList(ui.buttons);
 
-        for (int i = 0; i < newList.size(); i++) {
-            for (int j = 0; j < newList.size(); j++) {
-
-            }
-        }
     }
 }
-
-
-
-
-
-
-
-
 
 /* Tog bort följande för jag skapar vår gridlayout med en lista av listor, istället för en 2d array
   board.setLayout(new GridLayout (4,4));
