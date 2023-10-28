@@ -75,8 +75,6 @@ public class UI extends JFrame /*implements ActionListener */{  //implement till
 
     public static void main(String[] args) {
         UI ui = new UI();
-        Mechanics m = new Mechanics(ui);
-
     }
 }
 

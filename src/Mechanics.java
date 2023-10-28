@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Mechanics {
     private final UI ui;
+    private final List<String> numberList = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "");
 
     private Mechanics m;
 
@@ -16,6 +17,26 @@ public class Mechanics {
             list.add(Arrays.asList(jButtons));
         }
         return list;
+    }
+
+    public void sortList(List<List<JButton>> inputList) {
+        List<JButton> buttons = createFlatList(inputList);
+        for (int i = 0; i < buttons.size(); i++) {
+                buttons.get(i).setText(numberList.get(i));
+        }
+        ui.Lista = create2dList(buttons);
+    }
+
+    public void shuffleList(List<List<JButton>> inputList) {
+        List<JButton> buttons = createFlatList(inputList);
+        List<String> shuffledList = new ArrayList<>(numberList);
+        Collections.shuffle(shuffledList.subList(0, 15));
+
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).setText(shuffledList.get(i));
+        }
+
+        ui.Lista = create2dList(buttons);
     }
 
     public List<List<JButton>> shuffleBoard(List<List<JButton>> list) {  //tar in en lista av listor

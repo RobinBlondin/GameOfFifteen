@@ -23,9 +23,19 @@ public class EventHandler extends JFrame implements ActionListener {
                 ui.board.repaint();
             }
         } else if(e.getSource().equals(ui.shuffle)) {
-            List<List<JButton>> tempList = new ArrayList<>(ui.sortedList);
-            m.shuffleBoard(tempList);
-            for (List<JButton> row : tempList) {
+            m.shuffleList(ui.Lista);
+            ui.board.removeAll();
+            for (List<JButton> row : ui.Lista) {
+                for (JButton button : row) {
+                    ui.board.add(button);
+                }
+            }
+            ui.board.revalidate();
+            ui.board.repaint();
+        } else if (e.getSource().equals(ui.godMode)) {
+            m.sortList(ui.Lista);
+            ui.board.removeAll();
+            for (List<JButton> row : ui.Lista) {
                 for (JButton button : row) {
                     ui.board.add(button);
                 }
