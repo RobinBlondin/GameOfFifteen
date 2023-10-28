@@ -61,6 +61,18 @@ public class Mechanics {
         return list;
     }
 
+    /**
+     * Takes a list of JButton as input and creates and returns a 2d list.
+     */
+    public List<List<JButton>> create2dList(List<JButton> flatList) {
+        List<List<JButton>> list = new ArrayList<>();
+        for (int i = 0; i < flatList.size(); i += 4) {
+            list.add(flatList.subList(i, i+4).stream().toList());
+        }
+        return list;
+    }
+
+
     public void solvePuzzle() {
 
     }
