@@ -26,7 +26,8 @@ public class Mechanics {
         for (List<JButton> row : list) {
             shuffleList.addAll(row);                                    //lägger in alla buttons i denna shufflelist
         }
-        Collections.shuffle(shuffleList);                             //shufflar om dessa, randomizar dem med collection
+        Collections.shuffle(shuffleList.subList(0, 15));                            //shufflar om dessa, randomizar dem med collection
+        //La till att man endast shufflar de numrerade knapparna
 
         int index = 0;
         for (List<JButton> row : list) {                        //återskapar originallistan av listor efter shuffling

@@ -7,7 +7,7 @@ import java.util.List;
 
 
 //testtext
-public class UI extends JFrame implements ActionListener {  //implement tillfälligt
+public class UI extends JFrame /*implements ActionListener */{  //implement tillfälligt
 
     Mechanics m = new Mechanics();
     JPanel window = new JPanel();
@@ -28,7 +28,7 @@ public class UI extends JFrame implements ActionListener {  //implement tillfäl
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons.length; j++) {
                 buttons[i][j] = new JButton(counter == 16 ? "" : String.valueOf(counter));
-                buttons[i][j].addActionListener(new EventHandler());
+                buttons[i][j].addActionListener(new EventHandler(this, m));
                 counter++;
             }
         }
@@ -56,15 +56,11 @@ public class UI extends JFrame implements ActionListener {  //implement tillfäl
                 board.add(button);
             }
         }
-
-        //shuffle.addActionListener(new EventHandler(Lista));
-        shuffle.addActionListener(this);
-
-        //window.setSize(500,500);
-        //window.setVisible(true);
+        //Löste det genom att skapa en ny konstruktor i mechanics och skickar in denna instans av UI och Mechanics
+        shuffle.addActionListener(new EventHandler(this, m));
     }
 
-    @Override
+    /*@Override
     public void actionPerformed(ActionEvent e) {
 
         List<List<JButton>> shuffledList = m.shuffleBoard(Lista);
@@ -76,7 +72,7 @@ public class UI extends JFrame implements ActionListener {  //implement tillfäl
             }
         }
 
-    }
+    }*/
 
 
     public static void main(String[] args) {
