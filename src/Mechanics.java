@@ -17,6 +17,26 @@ public class Mechanics {
         return list;
     }
 
+    public void sortList(List<List<JButton>> inputList) {
+        List<JButton> buttons = createFlatList(inputList);
+        for (int i = 0; i < buttons.size(); i++) {
+                buttons.get(i).setText(numberList.get(i));
+        }
+        ui.Lista = create2dList(buttons);
+    }
+
+    public void shuffleList(List<List<JButton>> inputList) {
+        List<JButton> buttons = createFlatList(inputList);
+        List<String> shuffledList = new ArrayList<>(numberList);
+        Collections.shuffle(shuffledList.subList(0, 15));
+
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).setText(shuffledList.get(i));
+        }
+
+        ui.Lista = create2dList(buttons);
+    }
+
     public List<List<JButton>> shuffleBoard(List<List<JButton>> list) {  //tar in en lista av listor
         List<JButton> shuffleList = new ArrayList<>();                  //gör om detta till en shufflelist, "plattar ut" listan till 1d arraylist
         for (List<JButton> row : list) {
