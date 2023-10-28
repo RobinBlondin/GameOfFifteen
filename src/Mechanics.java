@@ -87,6 +87,20 @@ public class Mechanics {
         return null;
     }
 
+    /**
+     * Takes JButton as input and compares coordinates with the empty button. If the input button is next to
+     * the empty button this method will return true.
+     */
+    public boolean isButtonNextToEmpty(JButton clickedButton) {
+        int[] emptyPos = getPositionOfButton(ui.Lista, "");
+        int[] clickedButtonPos = getPositionOfButton(ui.Lista, clickedButton.getText());
+
+        int rowDifference = Math.abs(emptyPos[0] - clickedButtonPos[0]);
+        int columnDifference = Math.abs(emptyPos[1] - clickedButtonPos[1]);
+
+        return (rowDifference == 0 && columnDifference == 1) || (rowDifference == 1 && columnDifference == 0);
+    }
+
     public void solvePuzzle() {
 
     }
