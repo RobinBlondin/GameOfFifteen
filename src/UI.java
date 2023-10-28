@@ -6,7 +6,7 @@ import java.util.List;
 //testtext
 public class UI extends JFrame /*implements ActionListener */{  //implement tillfälligt
 
-    Mechanics m = new Mechanics();
+    Mechanics m = new Mechanics(this);
     JPanel window = new JPanel();
     JPanel board = new JPanel();
     JPanel buttonPanel = new JPanel();
@@ -52,7 +52,6 @@ public class UI extends JFrame /*implements ActionListener */{  //implement till
                 board.add(button);
             }
         }
-        //Löste det genom att skapa en ny konstruktor i mechanics och skickar in denna instans av UI och Mechanics
         shuffle.addActionListener(new EventHandler(this, m));
     }
 
