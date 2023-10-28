@@ -41,7 +41,7 @@ public class Mechanics {
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 buttons[i][j] = new JButton(counter == 16 ? "" : String.valueOf(counter));
-                buttons[i][j].addActionListener(new EventHandler(ui, m));
+                buttons[i][j].addActionListener(new EventHandler(ui, this));
                 counter++;
             }
         }
