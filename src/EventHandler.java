@@ -27,10 +27,10 @@ public class EventHandler extends JFrame implements ActionListener {
             for (List<JButton> row : tempList) {
                 for (JButton button : row) {
                     ui.board.add(button);
-                    ui.board.revalidate();
-                    ui.board.repaint();
                 }
             }
+            ui.board.revalidate();
+            ui.board.repaint();
         }
     }
 }
