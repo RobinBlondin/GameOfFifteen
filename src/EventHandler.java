@@ -15,9 +15,16 @@ public class EventHandler extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource().equals(ui.shuffle)) {
-            List<List<JButton>> shuffledList = m.shuffleBoard(ui.Lista);
-            for (List<JButton> row : shuffledList) {
+        if(m.createFlatList(ui.Lista).contains((JButton) e.getSource())) {
+            if(m.isButtonNextToEmpty((JButton) e.getSource())) {
+                ui.Lista = m.swapButtons(ui.Lista, (JButton) e.getSource());
+                ui.board.revalidate();
+                ui.board.repaint();
+            }
+        } else if(e.getSource().equals(ui.shuffle)) {
+            List<List<JButton>> tempList = new ArrayList<>(ui.sortedList);
+            m.shuffleBoard(tempList);
+            for (List<JButton> row : tempList) {
                 for (JButton button : row) {
                     ui.board.add(button);
                     ui.board.revalidate();
