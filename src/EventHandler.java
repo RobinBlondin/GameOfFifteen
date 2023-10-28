@@ -32,6 +32,16 @@ public class EventHandler extends JFrame implements ActionListener {
             }
             ui.board.revalidate();
             ui.board.repaint();
+        } else if (e.getSource().equals(ui.godMode)) {
+            m.sortList(ui.Lista);
+            ui.board.removeAll();
+            for (List<JButton> row : ui.Lista) {
+                for (JButton button : row) {
+                    ui.board.add(button);
+                }
+            }
+            ui.board.revalidate();
+            ui.board.repaint();
         }
     }
 }
