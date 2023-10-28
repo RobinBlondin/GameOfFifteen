@@ -21,13 +21,15 @@ public class UI extends JFrame /*implements ActionListener */{  //implement till
     int counter = 1;
 
     public UI() {
-        for (int i = 0; i < buttons.length; i++) {
-            for (int j = 0; j < buttons.length; j++) {
+
+         /*for (int i = 0; i < buttons.length; i++) {
+            for (int j = 0; j < buttons[i].length; j++) {
                 buttons[i][j] = new JButton(counter == 16 ? "" : String.valueOf(counter));
                 buttons[i][j].addActionListener(new EventHandler(this, m));
                 counter++;
             }
-        }
+        } */
+      m.initializeButtons(buttons);
 
         //buttons[3][3].setEnabled(false);        //inaktiverar en button
 
@@ -53,6 +55,7 @@ public class UI extends JFrame /*implements ActionListener */{  //implement till
             }
         }
         shuffle.addActionListener(new EventHandler(this, m));
+        godMode.addActionListener(new EventHandler(this, m));
     }
 
     /*@Override

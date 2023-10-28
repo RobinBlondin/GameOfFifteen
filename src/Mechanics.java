@@ -4,6 +4,8 @@ import java.util.*;
 public class Mechanics {
     private final UI ui;
 
+    private Mechanics m;
+
     public Mechanics(UI ui) {
         this.ui = ui;
     }
@@ -32,6 +34,17 @@ public class Mechanics {
             }
         }
         return list;
+    }
+
+    public void initializeButtons(JButton[][] buttons) {
+        int counter = 1;
+        for (int i = 0; i < buttons.length; i++) {
+            for (int j = 0; j < buttons[i].length; j++) {
+                buttons[i][j] = new JButton(counter == 16 ? "" : String.valueOf(counter));
+                buttons[i][j].addActionListener(new EventHandler(ui, m));
+                counter++;
+            }
+        }
     }
 
     /**
