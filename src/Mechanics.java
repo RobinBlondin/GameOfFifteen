@@ -101,6 +101,26 @@ public class Mechanics {
         return (rowDifference == 0 && columnDifference == 1) || (rowDifference == 1 && columnDifference == 0);
     }
 
+    /**
+     * Finds a JButton with a specific text in a list of lists and return an int array
+     * with x and y coordinates for that button.
+     */
+    public int[] getPositionOfButton(List<List<JButton>> inputList, String value) {
+        int x = 0;
+        for(List<JButton> list: inputList) {
+            int y = 0;
+            for(JButton button : list) {
+                if(button.getText().equals(value)){
+                    /*System.out.println(value + ":" + x + ", " + y);*/
+                    return new int[]{x, y};
+                }
+                y++;
+            }
+            x++;
+        }
+        return null;
+    }
+
     public void solvePuzzle() {
 
     }
