@@ -184,7 +184,7 @@ public class Mechanics extends JFrame {
 
         setVisible(true);
         setSize(200,100);
-        setLocationRelativeTo(null);           //kanske borde vara bound till programmet?
+        setLocationRelativeTo(ui.board);           //kanske borde vara bound till programmet?
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         add(jp);
