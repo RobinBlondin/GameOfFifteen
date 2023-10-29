@@ -68,7 +68,8 @@ public class UI extends JFrame {
         int counter = 1;
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
-                buttons[i][j] = new JButton(counter == 16 ? "" : String.valueOf(counter));
+                buttons[i][j] = new JButton(counter == 16? "": String.valueOf(counter));
+                buttons[i][j].setBackground(counter == 16? Color.LIGHT_GRAY: Color.decode("#FEF9E7"));
                 buttons[i][j].addActionListener(new EventHandler(this, utils, m));
                 counter++;
             }
