@@ -192,9 +192,16 @@ public class Mechanics extends JFrame {
         jp.add(jl);
         jp.add(jb);
 
+            jb.addActionListener(l -> {            //lambda
+                this.shuffleList(ui.Lista);
+                dispose();
+            });
+
+        }
+
     }
 
 
 
 
-}
+
