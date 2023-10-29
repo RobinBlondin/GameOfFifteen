@@ -35,6 +35,8 @@ public class UI extends JFrame {
         window.add(board, BorderLayout.CENTER);
         window.add(buttonPanel, BorderLayout.SOUTH);
 
+        utils.shuffleList(buttonList);
+
         board.setLayout(new GridLayout(4, 4));
         for (List<JButton> buttonList : buttonList) {
             for (JButton button : buttonList) {
