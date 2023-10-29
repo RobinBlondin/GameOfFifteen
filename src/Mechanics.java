@@ -1,7 +1,9 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
-public class Mechanics {
+public class Mechanics extends JFrame {
     private final UI ui;
     private final List<String> numberList = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "");
 
@@ -169,8 +171,26 @@ public class Mechanics {
             }
 
         if (buttonNamesList.equals(numberList)) {
-            JOptionPane.showConfirmDialog(null,"du vann");
+            victoryBox();
         }
+
+    }
+
+    public void victoryBox() {
+
+        JPanel jp = new JPanel();
+        JLabel jl = new JLabel("You want to play again?");
+        JButton jb = new JButton("Ofcourse");
+
+        setVisible(true);
+        setSize(200,100);
+        setLocationRelativeTo(null);           //kanske borde vara bound till programmet?
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        add(jp);
+        jp.setLayout(new FlowLayout());
+        jp.add(jl);
+        jp.add(jb);
 
     }
 
