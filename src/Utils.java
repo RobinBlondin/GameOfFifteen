@@ -35,11 +35,9 @@ public class Utils extends JFrame {
         List<String> shuffledList = createSolvableBoard(new ArrayList<>(numberList));
 
         for (int i = 0; i < buttons.size(); i++) {
-            JButton button = buttons.get(i);
-            button.setText(shuffledList.get(i));
-            button.setFont(new Font("Arial", Font.BOLD, 28));
-
+            buttons.get(i).setText(shuffledList.get(i));
         }
+
         ui.setButtonList(create2dList(buttons));
     }
 
