@@ -99,11 +99,11 @@ public class Utils extends JFrame {
     public void victoryBox() {
 
         JPanel jp = new JPanel();
-        JLabel jl = new JLabel("You want to play again?");
+        JLabel jl = new JLabel("Good Job! You want to play again?");
         JButton jb = new JButton("Ofcourse");
 
         setVisible(true);
-        setSize(200,100);
+        setSize(230,100);
         setLocationRelativeTo(ui.getBoard());           //kanske borde vara bound till programmet?
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 

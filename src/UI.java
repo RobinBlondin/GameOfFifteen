@@ -27,9 +27,14 @@ public class UI extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        JPanel buttonPanel = new JPanel();
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        buttonPanel.setPreferredSize(new Dimension(80,80));
+
         buttonPanel.add(godMode);
+        godMode.setPreferredSize(new Dimension(200,60));
+        buttonPanel.add(new JLabel("                                          "));
         buttonPanel.add(shuffle);
+        shuffle.setPreferredSize(new Dimension(200,60));
 
         window.setLayout(new BorderLayout());
         window.add(board, BorderLayout.CENTER);
@@ -91,6 +96,10 @@ public class UI extends JFrame {
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
                 buttons[i][j] = new JButton(counter == 16 ? "" : String.valueOf(counter));
+                buttons[i][j].setFont(new Font("Arial", Font.BOLD, 30));
+                buttons[i][j].setBackground(Color.decode("#FEF9E7"));
+                buttons[i][j].setForeground(Color.decode("#212F3C"));
+                buttons[i][j].setFocusPainted(false);
                 buttons[i][j].addActionListener(new EventHandler(this, utils, m));
                 counter++;
             }
