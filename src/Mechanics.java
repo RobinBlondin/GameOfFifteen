@@ -29,8 +29,7 @@ public class Mechanics {
 
     public void shuffleList(List<List<JButton>> inputList) {
         List<JButton> buttons = createFlatList(inputList);
-        List<String> shuffledList = new ArrayList<>(numberList);
-        Collections.shuffle(shuffledList.subList(0, 15));
+        List<String> shuffledList = createSolvableBoard(new ArrayList<>(numberList));
 
         for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setText(shuffledList.get(i));
@@ -155,13 +154,30 @@ public class Mechanics {
         return null;
     }
 
-    public void solvePuzzle() {
-
+    public List<String> createSolvableBoard(List<String> list) {
+        while(true) {
+            Collections.shuffle(list.subList(0, 15));
+            int inversions = 0;
+            for (int i = 0; i < list.size() - 2; i++) {
+                for (int j = i + 1; j < list.size() - 1; j++) {
+                    if (Integer.parseInt(list.get(i)) > Integer.parseInt(list.get(i))) {
+                        inversions++;
+                    }
+                }
+            }
+            if(inversions % 2 == 0) {
+                break;
+            }
+        }
+        return list;
     }
+
 
     public void validatePuzzle() {
 
     }
+
+
 
 
 }
