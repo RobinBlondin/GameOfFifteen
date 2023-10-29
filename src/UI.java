@@ -4,19 +4,19 @@ import java.util.List;
 
 public class UI extends JFrame {
 
-    Mechanics m = new Mechanics(this);
-    JPanel window = new JPanel();
-    JPanel board = new JPanel();
-    JPanel buttonPanel = new JPanel();
+    private final Mechanics m;
+    private final Utils utils;
+    private final JPanel board = new JPanel();
+    private final JButton shuffle = new JButton("Shuffle");
+    private final JButton godMode = new JButton("God Mode");
 
-    JButton[][] buttons = new JButton[4][4];
-    JButton shuffle = new JButton("Shuffle");
-    JButton godMode = new JButton("God Mode");
-
-    List<List<JButton>> Lista = m.createList(buttons);
+    private final JButton[][] buttons = new JButton[4][4];
+    private List<List<JButton>> buttonList;
 
     public UI() {
-        m.initializeButtons(buttons);
+        this.utils = new Utils(this);
+        this.m = new Mechanics(this, utils);
+        this.buttonList = utils.createListFromArray(buttons);
 
         add(window);
         setVisible(true);
@@ -37,8 +37,28 @@ public class UI extends JFrame {
                 board.add(button);
             }
         }
-        shuffle.addActionListener(new EventHandler(this, m));
-        godMode.addActionListener(new EventHandler(this, m));
+        shuffle.addActionListener(new EventHandler(this, utils, m));
+        godMode.addActionListener(new EventHandler(this, utils, m));
+    }
+
+    //region Getters och setters
+
+    public JButton getShuffle() {
+        return shuffle;
+    }
+
+
+    public JButton getGodMode() {
+        return godMode;
+    }
+
+
+    public List<List<JButton>> getButtonList() {
+        return buttonList;
+    }
+
+    public void setButtonList(List<List<JButton>> buttonList) {
+        this.buttonList = buttonList;
     }
     public static void main(String[] args) {
         UI ui = new UI();
