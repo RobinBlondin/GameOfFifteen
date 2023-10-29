@@ -74,6 +74,46 @@ public class UI extends JFrame {
             }
         }
     }
+
+    public void setButtonColor(JButton clickedButton, JButton emptyButton){
+        clickedButton.setBackground(Color.LIGHT_GRAY);
+        emptyButton.setBackground(Color.decode("#FEF9E7"));
+    }
+
+    public void resetButtonColor(int index, JButton clickedButton){
+        if(index < 15) {
+            clickedButton.setBackground(Color.decode("#FEF9E7"));
+        } else {
+            clickedButton.setBackground(Color.LIGHT_GRAY);
+        }
+    }
+
+    public void createBoard() {
+        JPanel window = new JPanel();
+        add(window);
+        setVisible(true);
+        setSize(800, 900);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(godMode);
+        buttonPanel.add(shuffle);
+
+        window.setLayout(new BorderLayout());
+        window.add(board, BorderLayout.CENTER);
+        window.add(buttonPanel, BorderLayout.SOUTH);
+
+        utils.shuffleList(buttonList);
+
+        board.setLayout(new GridLayout(4, 4));
+        board.setOpaque(false);
+        for (List<JButton> buttonList : buttonList) {
+            for (JButton button : buttonList) {
+                board.add(button);
+            }
+        }
+    }
 }
 
 
