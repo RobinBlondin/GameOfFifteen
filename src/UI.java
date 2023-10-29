@@ -64,8 +64,33 @@ public class UI extends JFrame {
     public void setButtonList(List<List<JButton>> buttonList) {
         this.buttonList = buttonList;
     }
-    public static void main(String[] args) {
-        UI ui = new UI();
+    //endregion
+
+    public void revalidateRepaint() {
+        board.revalidate();
+        board.repaint();
+    }
+
+
+    public void rewriteBoard() {
+        board.removeAll();
+        for (List<JButton> row : buttonList) {
+            for (JButton button : row) {
+                board.add(button);
+            }
+        }
+    }
+
+    public void initializeButtons() {
+        int counter = 1;
+        for (int i = 0; i < buttons.length; i++) {
+            for (int j = 0; j < buttons[i].length; j++) {
+                buttons[i][j] = new JButton(counter == 16 ? "" : String.valueOf(counter));
+                buttons[i][j].addActionListener(new EventHandler(this, utils, m));
+                counter++;
+            }
+        }
     }
 }
+
 

@@ -30,18 +30,4 @@ public class EventHandler implements ActionListener {
             revalidateRepaint();
         }
     }
-
-    public void revalidateRepaint() {
-        ui.board.revalidate();
-        ui.board.repaint();
-    }
-
-    public void rewriteBoard() {
-        ui.board.removeAll();
-        for (List<JButton> row : ui.Lista) {
-            for (JButton button : row) {
-                ui.board.add(button);
-            }
-        }
-    }
 }
