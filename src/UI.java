@@ -18,12 +18,16 @@ public class UI extends JFrame {
         this.m = new Mechanics(this, utils);
         this.buttonList = utils.createListFromArray(buttons);
 
+        initializeButtons();
+
+        JPanel window = new JPanel();
         add(window);
         setVisible(true);
         setSize(800, 900);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        JPanel buttonPanel = new JPanel();
         buttonPanel.add(godMode);
         buttonPanel.add(shuffle);
 
@@ -32,7 +36,7 @@ public class UI extends JFrame {
         window.add(buttonPanel, BorderLayout.SOUTH);
 
         board.setLayout(new GridLayout(4, 4));
-        for (List<JButton> buttonList : Lista) {
+        for (List<JButton> buttonList : buttonList) {
             for (JButton button : buttonList) {
                 board.add(button);
             }
