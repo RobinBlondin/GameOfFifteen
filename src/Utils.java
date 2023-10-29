@@ -94,7 +94,6 @@ public class Utils extends JFrame {
         if (buttonNamesList.equals(numberList)) {
             victoryBox();
         }
-
     }
 
     public void victoryBox() {

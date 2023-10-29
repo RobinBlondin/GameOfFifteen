@@ -75,8 +75,4 @@ public class Mechanics {
         utils.validatePuzzle(list);
         return utils.create2dList(list);
     }
-
-
-
-
 }
