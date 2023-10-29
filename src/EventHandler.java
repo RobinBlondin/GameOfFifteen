@@ -1,14 +1,12 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
-public class EventHandler extends JFrame implements ActionListener {
+public class EventHandler implements ActionListener {
     UI ui;
     Mechanics m;
 
-    //Skapade en konstruktor där man kan skicka in en UI och en Mechanics
     public EventHandler(UI ui, Mechanics m) {
         this.ui = ui;
         this.m = m;
