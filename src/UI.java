@@ -27,9 +27,14 @@ public class UI extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        JPanel buttonPanel = new JPanel();
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        buttonPanel.setPreferredSize(new Dimension(80,80));
+
         buttonPanel.add(godMode);
+        godMode.setPreferredSize(new Dimension(200,60));
+        buttonPanel.add(new JLabel("                                          "));
         buttonPanel.add(shuffle);
+        shuffle.setPreferredSize(new Dimension(200,60));
 
         window.setLayout(new BorderLayout());
         window.add(board, BorderLayout.CENTER);
