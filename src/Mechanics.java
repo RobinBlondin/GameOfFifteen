@@ -70,9 +70,14 @@ public class Mechanics {
         int indexClickedButton = list.indexOf(clickedButton);
         int indexOfEmptyButton = list.indexOf(findEmptyButton(inputList));
 
-        list.get(indexOfEmptyButton).setText(clickedButton.getText());
-        list.get(indexClickedButton).setText("");
+        JButton newEmptyButton = list.get(indexClickedButton);
+        JButton newClickedButton = list.get(indexOfEmptyButton);
+
+        newClickedButton.setText(clickedButton.getText());
+        newEmptyButton.setText("");
+        ui.setButtonColor(newEmptyButton, newClickedButton);
         utils.validatePuzzle(list);
         return utils.create2dList(list);
     }
+
 }
