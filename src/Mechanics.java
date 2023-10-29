@@ -16,17 +16,13 @@ public class Mechanics {
      * with x and y coordinates for that button.
      */
     public int[] getPositionOfButton(List<List<JButton>> inputList, String value) {
-        int x = 0;
-        for(List<JButton> list: inputList) {
-            int y = 0;
-            for(JButton button : list) {
-                if(button.getText().equals(value)){
-                    /*System.out.println(value + ":" + x + ", " + y);*/
-                    return new int[]{x, y};
+        for (int i = 0; i < inputList.size(); i++) {
+            for (int j = 0; j < inputList.size(); j++) {
+                String currentButtonValue = inputList.get(i).get(j).getText();
+                if(currentButtonValue.equals(value)){
+                    return new int[]{i, j};
                 }
-                y++;
             }
-            x++;
         }
         return null;
     }
