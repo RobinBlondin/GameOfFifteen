@@ -17,44 +17,30 @@ public class EventHandler implements ActionListener {
         if(m.createFlatList(ui.Lista).contains((JButton) e.getSource())) {
             if(m.isButtonNextToEmpty((JButton) e.getSource())) {
                 ui.Lista = m.swapButtons(ui.Lista, (JButton) e.getSource());
-                ui.board.revalidate();
-                ui.board.repaint();
+                revalidateRepaint();
             }
         } else if(e.getSource().equals(ui.shuffle)) {
             m.shuffleList(ui.Lista);
-            ui.board.removeAll();
-            for (List<JButton> row : ui.Lista) {
-                for (JButton button : row) {
-                    ui.board.add(button);
-                }
-            }
-            ui.board.revalidate();
-            ui.board.repaint();
+            rewriteBoard();
+            revalidateRepaint();
         } else if (e.getSource().equals(ui.godMode)) {
             m.sortList(ui.Lista);
-            ui.board.removeAll();
-            for (List<JButton> row : ui.Lista) {
-                for (JButton button : row) {
-                    ui.board.add(button);
-                }
-            }
-            ui.board.revalidate();
-            ui.board.repaint();
-        } else if (e.getSource().equals(ui.godMode)) {
-            m.initializeButtons(ui.buttons);
-            ui.board.removeAll();
-            ui.board.revalidate();
-            ui.board.repaint();
-            for (List<JButton> buttonList : ui.sortedList) {
-                for (JButton button : buttonList) {
-                    ui.board.add(button);
-                    ui.board.revalidate();
-                    ui.board.repaint();
-                }
-            }
-            //inaktiverar en button
+            rewriteBoard();
+            revalidateRepaint();
+        }
+    }
 
+    public void revalidateRepaint() {
+        ui.board.revalidate();
+        ui.board.repaint();
+    }
 
+    public void rewriteBoard() {
+        ui.board.removeAll();
+        for (List<JButton> row : ui.Lista) {
+            for (JButton button : row) {
+                ui.board.add(button);
+            }
         }
     }
 }
