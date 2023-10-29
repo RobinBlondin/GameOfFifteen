@@ -134,6 +134,9 @@ public class Mechanics {
         return null;
     }
 
+    /**
+     * Takes a list of strings as input and shuffles it until it is solvable.
+     */
     public List<String> createSolvableBoard(List<String> list) {
         while(true) {
             Collections.shuffle(list.subList(0, 15));
