@@ -20,6 +20,7 @@ public class Utils {
         return list;
     }
 
+
     public void sortList(List<List<JButton>> inputList) {
         List<JButton> buttons = createFlatList(inputList);
         for (int i = 0; i < buttons.size(); i++) {
