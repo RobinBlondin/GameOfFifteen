@@ -57,6 +57,9 @@ public class UI extends JFrame {
     public JButton getGodMode() {
         return godMode;
     }
+    public JPanel getBoard() {
+        return board;
+    }
 
 
     public List<List<JButton>> getButtonList() {

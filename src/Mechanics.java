@@ -1,5 +1,7 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class Mechanics {
     private final UI ui;
@@ -70,6 +72,11 @@ public class Mechanics {
 
         list.get(indexOfEmptyButton).setText(clickedButton.getText());
         list.get(indexClickedButton).setText("");
+        utils.validatePuzzle(list);
         return utils.create2dList(list);
     }
+
+
+
+
 }
