@@ -98,6 +98,8 @@ public class UI extends JFrame {
                 buttons[i][j] = new JButton(counter == 16 ? "" : String.valueOf(counter));
                 buttons[i][j].setFont(new Font("Arial", Font.BOLD, 30));
                 buttons[i][j].setBackground(Color.WHITE);
+                buttons[i][j].setForeground(Color.DARK_GRAY);
+                buttons[i][j].setFocusPainted(false);
                 buttons[i][j].addActionListener(new EventHandler(this, utils, m));
                 counter++;
             }
