@@ -19,30 +19,8 @@ public class UI extends JFrame {
         this.buttonList = utils.createListFromArray(buttons);
 
         initializeButtons();
+        createBoard();
 
-        JPanel window = new JPanel();
-        add(window);
-        setVisible(true);
-        setSize(800, 900);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(godMode);
-        buttonPanel.add(shuffle);
-
-        window.setLayout(new BorderLayout());
-        window.add(board, BorderLayout.CENTER);
-        window.add(buttonPanel, BorderLayout.SOUTH);
-
-        utils.shuffleList(buttonList);
-
-        board.setLayout(new GridLayout(4, 4));
-        for (List<JButton> buttonList : buttonList) {
-            for (JButton button : buttonList) {
-                board.add(button);
-            }
-        }
         shuffle.addActionListener(new EventHandler(this, utils, m));
         godMode.addActionListener(new EventHandler(this, utils, m));
     }
