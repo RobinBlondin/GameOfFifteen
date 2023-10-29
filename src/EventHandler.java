@@ -4,8 +4,9 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class EventHandler implements ActionListener {
-    UI ui;
-    Mechanics m;
+    private final UI ui;
+    private final Utils utils;
+    private final Mechanics m;
 
     public EventHandler(UI ui, Mechanics m) {
         this.ui = ui;
