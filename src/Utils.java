@@ -35,9 +35,11 @@ public class Utils extends JFrame {
         List<String> shuffledList = createSolvableBoard(new ArrayList<>(numberList));
 
         for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).setText(shuffledList.get(i));
-        }
+            JButton button = buttons.get(i);
+            button.setText(shuffledList.get(i));
+            button.setFont(new Font("Arial", Font.BOLD, 28));
 
+        }
         ui.setButtonList(create2dList(buttons));
     }
 
@@ -99,11 +101,11 @@ public class Utils extends JFrame {
     public void victoryBox() {
 
         JPanel jp = new JPanel();
-        JLabel jl = new JLabel("You want to play again?");
+        JLabel jl = new JLabel("Good Job! You want to play again?");
         JButton jb = new JButton("Ofcourse");
 
         setVisible(true);
-        setSize(200,100);
+        setSize(230,100);
         setLocationRelativeTo(ui.getBoard());           //kanske borde vara bound till programmet?
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
