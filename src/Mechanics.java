@@ -5,8 +5,6 @@ public class Mechanics {
     private final UI ui;
     private final List<String> numberList = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "");
 
-    private Mechanics m;
-
     public Mechanics(UI ui) {
         this.ui = ui;
     }
@@ -36,24 +34,6 @@ public class Mechanics {
         }
 
         ui.Lista = create2dList(buttons);
-    }
-
-    public List<List<JButton>> shuffleBoard(List<List<JButton>> list) {  //tar in en lista av listor
-        List<JButton> shuffleList = new ArrayList<>();                  //gör om detta till en shufflelist, "plattar ut" listan till 1d arraylist
-        for (List<JButton> row : list) {
-            shuffleList.addAll(row);                                    //lägger in alla buttons i denna shufflelist
-        }
-        Collections.shuffle(shuffleList.subList(0, 15));                            //shufflar om dessa, randomizar dem med collection
-        //La till att man endast shufflar de numrerade knapparna
-
-        int index = 0;
-        for (List<JButton> row : list) {                        //återskapar originallistan av listor efter shuffling
-            for (int i = 0; i < row.size(); i++) {
-                row.set(i, shuffleList.get(index));          //lägger tillbaka varje button i shufflelistan i originallistan
-                index++;
-            }
-        }
-        return list;
     }
 
     public void initializeButtons(JButton[][] buttons) {
@@ -171,7 +151,6 @@ public class Mechanics {
         }
         return list;
     }
-
 
     public void validatePuzzle() {
 
