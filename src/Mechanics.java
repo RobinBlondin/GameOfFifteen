@@ -59,6 +59,7 @@ public class Mechanics {
 
         list.get(indexOfEmptyButton).setText(clickedButton.getText());
         list.get(indexClickedButton).setText("");
+        validatePuzzle(list);
         return create2dList(list);
     }
 
@@ -155,7 +156,21 @@ public class Mechanics {
         return list;
     }
 
-    public void validatePuzzle() {
+    /**
+     * tar in en lista JButton, denna jämförs med vår final lista NumberList, om de är lika (alltså spelet är löst) så får man
+     * notifikation om detta
+     * @param inputList
+     */
+    public void validatePuzzle(List<JButton> inputList) {
+
+        List<String> buttonNamesList = new ArrayList<>();                      //skapar en ny arraylist som ska stora namnet på alla knappar
+            for (JButton button : inputList) {
+                buttonNamesList.add(button.getText());
+            }
+
+        if (buttonNamesList.equals(numberList)) {
+            JOptionPane.showConfirmDialog(null,"du vann");
+        }
 
     }
 
