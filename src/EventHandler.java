@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class EventHandler implements ActionListener {
     private final UI ui;
@@ -14,18 +15,24 @@ public class EventHandler implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        JButton clickedButton = (JButton) e.getSource();
+        List<List<JButton>> buttonList = ui.getButtonList();
 
-        if(utils.createFlatList(ui.getButtonList()).contains((JButton) e.getSource())) {
-            if(m.isButtonNextToEmpty((JButton) e.getSource())) {
-                ui.setButtonList(m.swapButtons(ui.getButtonList(), (JButton) e.getSource()));
+        boolean buttonIsNumberTile = utils.createFlatList(buttonList).contains(clickedButton);
+        boolean buttonIsShuffle = clickedButton.equals(ui.getShuffle());
+        boolean buttonIsGodMode = clickedButton.equals(ui.getGodMode());
+
+        if(buttonIsNumberTile) {
+            if(m.isButtonNextToEmpty(clickedButton)) {
+                m.swapButtons(buttonList, clickedButton);
                 ui.revalidateRepaint();
             }
-        } else if(e.getSource().equals(ui.getShuffle())) {
-            utils.shuffleList(ui.getButtonList());
+        } else if(buttonIsShuffle) {
+            utils.setShuffledLabels(buttonList);
             ui.rewriteBoard();
             ui.revalidateRepaint();
-        } else if (e.getSource().equals(ui.getGodMode())) {
-            utils.sortList(ui.getButtonList());
+        } else if (buttonIsGodMode) {
+            utils.setSortedLabels(buttonList);
             ui.rewriteBoard();
             ui.revalidateRepaint();
         }
