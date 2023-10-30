@@ -100,7 +100,10 @@ public class Utils extends JFrame {
     }
 
 
-
+    /**
+     * Takes a list of buttons as input and compares the text of each button with the
+     * text of the buttons in the numberList. If the lists are equal the player has won.
+     */
     public void validatePuzzle (List<JButton> inputList) {
 
         List<String> buttonNamesList = new ArrayList<>();                      //skapar en ny arraylist som ska stora namnet på alla knappar
@@ -113,6 +116,9 @@ public class Utils extends JFrame {
         }
     }
 
+    /**
+     * Creates a new JFrame with a victory message and a button to start a new game.
+     */
     public void victoryBox() {
 
         JPanel jp = new JPanel();
