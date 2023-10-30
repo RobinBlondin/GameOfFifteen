@@ -67,8 +67,6 @@ public class Mechanics {
         JButton clickedButton = findButtonByText(inputList, button.getText());
         JButton emptyButton = findButtonByText(inputList, "");
 
-        int indexClickedButton = list.indexOf(clickedButton);
-        int indexOfEmptyButton = list.indexOf(findEmptyButton(inputList));
         swapButtonText(clickedButton, emptyButton);
         ui.swapButtonColor(clickedButton, emptyButton);
 
