@@ -46,10 +46,10 @@ public class Mechanics {
     /**
      * Iterates through a list of buttons and returns the first button that has no text.
      */
-    public JButton findEmptyButton(List<List<JButton>> inputList) {
+    public JButton findButtonByText(List<List<JButton>> inputList, String buttonValue) {
         for (List<JButton> list : inputList) {
             for(JButton button : list) {
-                if(button.getText().isEmpty()){
+                if(button.getText().equals(buttonValue)) {
                     return button;
                 }
             }
@@ -59,23 +59,24 @@ public class Mechanics {
 
 
     /**
-     * Takes a 2d list and a button as input and swaps the text of the input button with the empty button
+     * Takes a 2d list, and a button as input and swaps the text of the input button with the empty button
      * and returns the new updated list.
      */
-    public List<List<JButton>> swapButtons(List<List<JButton>> inputList, JButton clickedButton) {
-        List<JButton> list = utils.createFlatList(inputList);
+    public void swapButtons(List<List<JButton>> inputList, JButton button) {
+        List<JButton> flattenedList = utils.createFlatList(inputList);
+        JButton clickedButton = findButtonByText(inputList, button.getText());
+        JButton emptyButton = findButtonByText(inputList, "");
 
-        int indexClickedButton = list.indexOf(clickedButton);
-        int indexOfEmptyButton = list.indexOf(findEmptyButton(inputList));
+        swapButtonText(clickedButton, emptyButton);
+        ui.swapButtonColor(clickedButton, emptyButton);
 
-        JButton newEmptyButton = list.get(indexClickedButton);
-        JButton newClickedButton = list.get(indexOfEmptyButton);
+        utils.validatePuzzle(flattenedList);
+    }
 
-        newClickedButton.setText(clickedButton.getText());
-        newEmptyButton.setText("");
-        ui.setButtonColor(newEmptyButton, newClickedButton);
-        utils.validatePuzzle(list);
-        return utils.create2dList(list);
+    public void swapButtonText(JButton button1, JButton button2) {
+        String temp = button1.getText();
+        button1.setText(button2.getText());
+        button2.setText(temp);
     }
 
 }
