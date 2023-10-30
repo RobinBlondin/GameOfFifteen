@@ -13,6 +13,9 @@ public class Utils extends JFrame {
         this.ui = ui;
     }
 
+    /**
+     * Takes a 2d array as input and creates and returns a list of lists.
+     */
     public List<List<JButton>> createListFromArray(JButton[][] array) {
         List<List<JButton>> list = new ArrayList<>();
         for (JButton[] jButtons : array) {
@@ -22,6 +25,10 @@ public class Utils extends JFrame {
     }
 
 
+    /**
+     * Takes a list of lists as input replace the text of each button in the order of the
+     * sorted list.
+     */
     public void sortList(List<List<JButton>> inputList) {
         List<JButton> buttons = createFlatList(inputList);
         for (int i = 0; i < buttons.size(); i++) {
@@ -31,39 +38,6 @@ public class Utils extends JFrame {
         ui.setButtonList(create2dList(buttons));
     }
 
-    public void shuffleList(List<List<JButton>> inputList) {
-        List<JButton> buttons = createFlatList(inputList);
-        List<String> shuffledList = createSolvableBoard(new ArrayList<>(numberList));
-
-        for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).setText(shuffledList.get(i));
-            ui.resetButtonColor(i, buttons.get(i));
-        }
-
-        ui.setButtonList(create2dList(buttons));
-    }
-
-    /**
-     * Takes a 2d list as input and returns it as a normal list.
-     */
-    public List<JButton> createFlatList(List<List<JButton>> inputList) {
-        List<JButton> list = new ArrayList<>();
-        for(List<JButton> l : inputList) {
-            list.addAll(l);
-        }
-        return list;
-    }
-
-    /**
-     * Takes a list of JButton as input and creates and returns a 2d list.
-     */
-    public List<List<JButton>> create2dList(List<JButton> flatList) {
-        List<List<JButton>> list = new ArrayList<>();
-        for (int i = 0; i < flatList.size(); i += 4) {
-            list.add(flatList.subList(i, i+4).stream().toList());
-        }
-        return list;
-    }
 
     /**
      * Takes a list of strings as input and shuffles it until it is solvable.
@@ -86,6 +60,50 @@ public class Utils extends JFrame {
         return list;
     }
 
+
+    /**
+     * Takes a list of lists as input and replace the text of the buttons
+     * with a new shuffled order.
+     */
+    public void shuffleList(List<List<JButton>> inputList) {
+        List<JButton> buttons = createFlatList(inputList);
+        List<String> shuffledList = createSolvableBoard(new ArrayList<>(numberList));
+
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).setText(shuffledList.get(i));
+            ui.resetButtonColor(i, buttons.get(i));
+        }
+
+        ui.setButtonList(create2dList(buttons));
+    }
+
+    /**
+     * Takes a list of lists as input and flatten it to a 1d list.
+     */
+    public List<JButton> createFlatList(List<List<JButton>> inputList) {
+        List<JButton> list = new ArrayList<>();
+        for(List<JButton> l : inputList) {
+            list.addAll(l);
+        }
+        return list;
+    }
+
+    /**
+     * Takes a list of JButton as input and creates and returns a 2d list.
+     */
+    public List<List<JButton>> create2dList(List<JButton> flatList) {
+        List<List<JButton>> list = new ArrayList<>();
+        for (int i = 0; i < flatList.size(); i += 4) {
+            list.add(flatList.subList(i, i+4).stream().toList());
+        }
+        return list;
+    }
+
+
+    /**
+     * Takes a list of buttons as input and compares the text of each button with the
+     * text of the buttons in the numberList. If the lists are equal the player has won.
+     */
     public void validatePuzzle (List<JButton> inputList) {
 
         List<String> buttonNamesList = new ArrayList<>();                      //skapar en ny arraylist som ska stora namnet på alla knappar
@@ -98,6 +116,9 @@ public class Utils extends JFrame {
         }
     }
 
+    /**
+     * Creates a new JFrame with a victory message and a button to start a new game.
+     */
     public void victoryBox() {
 
         JPanel jp = new JPanel();
