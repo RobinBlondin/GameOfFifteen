@@ -78,7 +78,7 @@ public class UI extends JFrame {
         }
     }
 
-    public void setButtonColor(JButton clickedButton, JButton emptyButton){
+    public void swapButtonColor(JButton clickedButton, JButton emptyButton){
         clickedButton.setBackground(Color.LIGHT_GRAY);
         emptyButton.setBackground(Color.decode("#FEF9E7"));
     }
