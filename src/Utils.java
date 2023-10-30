@@ -42,13 +42,13 @@ public class Utils extends JFrame {
     /**
      * Takes a list of strings as input and shuffles it until it is solvable.
      */
-    public List<String> createSolvableBoard(List<String> list) {
+    public List<String> createSolvableOrder(List<String> list) {
         while(true) {
             Collections.shuffle(list.subList(0, 15));
             int inversions = 0;
             for (int i = 0; i < list.size() - 2; i++) {
                 for (int j = i + 1; j < list.size() - 1; j++) {
-                    if (Integer.parseInt(list.get(i)) > Integer.parseInt(list.get(i))) {
+                    if (Integer.parseInt(list.get(i)) > Integer.parseInt(list.get(j))) {
                         inversions++;
                     }
                 }
@@ -67,7 +67,7 @@ public class Utils extends JFrame {
      */
     public void shuffleList(List<List<JButton>> inputList) {
         List<JButton> buttons = createFlatList(inputList);
-        List<String> shuffledList = createSolvableBoard(new ArrayList<>(numberList));
+        List<String> shuffledList = createSolvableOrder(new ArrayList<>(numberList));
 
         for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setText(shuffledList.get(i));
