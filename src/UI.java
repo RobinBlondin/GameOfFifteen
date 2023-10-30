@@ -19,39 +19,11 @@ public class UI extends JFrame {
         this.buttonList = utils.createListFromArray(buttons);
 
         initializeButtons();
+        createBoard();
 
-        JPanel window = new JPanel();
-        add(window);
-        setVisible(true);
-        setSize(800, 900);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        JPanel buttonPanel = new JPanel(new FlowLayout());
-        buttonPanel.setPreferredSize(new Dimension(80,80));
-
-        buttonPanel.add(godMode);
-        godMode.setPreferredSize(new Dimension(200,60));
-        buttonPanel.add(new JLabel("                                          "));
-        buttonPanel.add(shuffle);
-        shuffle.setPreferredSize(new Dimension(200,60));
-
-        window.setLayout(new BorderLayout());
-        window.add(board, BorderLayout.CENTER);
-        window.add(buttonPanel, BorderLayout.SOUTH);
-
-        utils.shuffleList(buttonList);
-
-        board.setLayout(new GridLayout(4, 4));
-        for (List<JButton> buttonList : buttonList) {
-            for (JButton button : buttonList) {
-                board.add(button);
-            }
-        }
         shuffle.addActionListener(new EventHandler(this, utils, m));
         godMode.addActionListener(new EventHandler(this, utils, m));
     }
-
     //region Getters och setters
 
     public JButton getShuffle() {
@@ -95,13 +67,57 @@ public class UI extends JFrame {
         int counter = 1;
         for (int i = 0; i < buttons.length; i++) {
             for (int j = 0; j < buttons[i].length; j++) {
-                buttons[i][j] = new JButton(counter == 16 ? "" : String.valueOf(counter));
+                buttons[i][j] = new JButton(counter == 16? "": String.valueOf(counter));
                 buttons[i][j].setFont(new Font("Arial", Font.BOLD, 30));
-                buttons[i][j].setBackground(Color.decode("#FEF9E7"));
+                buttons[i][j].setBackground(counter == 16? Color.LIGHT_GRAY: Color.decode("#FEF9E7"));
                 buttons[i][j].setForeground(Color.decode("#212F3C"));
                 buttons[i][j].setFocusPainted(false);
                 buttons[i][j].addActionListener(new EventHandler(this, utils, m));
                 counter++;
+            }
+        }
+    }
+
+    public void setButtonColor(JButton clickedButton, JButton emptyButton){
+        clickedButton.setBackground(Color.LIGHT_GRAY);
+        emptyButton.setBackground(Color.decode("#FEF9E7"));
+    }
+
+    public void resetButtonColor(int index, JButton clickedButton){
+        if(index < 15) {
+            clickedButton.setBackground(Color.decode("#FEF9E7"));
+        } else {
+            clickedButton.setBackground(Color.LIGHT_GRAY);
+        }
+    }
+
+    public void createBoard() {
+        JPanel window = new JPanel();
+        add(window);
+        setVisible(true);
+        setSize(800, 900);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        buttonPanel.setPreferredSize(new Dimension(80,80));
+
+        buttonPanel.add(godMode);
+        godMode.setPreferredSize(new Dimension(200,60));
+        buttonPanel.add(new JLabel("                                          "));
+        buttonPanel.add(shuffle);
+        shuffle.setPreferredSize(new Dimension(200,60));
+
+        window.setLayout(new BorderLayout());
+        window.add(board, BorderLayout.CENTER);
+        window.add(buttonPanel, BorderLayout.SOUTH);
+
+        utils.shuffleList(buttonList);
+
+        board.setLayout(new GridLayout(4, 4));
+        for (List<JButton> buttonList : buttonList) {
+            for (JButton button : buttonList) {
+                board.add(button);
             }
         }
     }

@@ -26,6 +26,7 @@ public class Utils extends JFrame {
         List<JButton> buttons = createFlatList(inputList);
         for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setText(numberList.get(i));
+            ui.resetButtonColor(i, buttons.get(i));
         }
         ui.setButtonList(create2dList(buttons));
     }
@@ -36,6 +37,7 @@ public class Utils extends JFrame {
 
         for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setText(shuffledList.get(i));
+            ui.resetButtonColor(i, buttons.get(i));
         }
 
         ui.setButtonList(create2dList(buttons));
@@ -116,7 +118,6 @@ public class Utils extends JFrame {
             this.shuffleList(ui.getButtonList());
             dispose();
         });
-
     }
 
 }
