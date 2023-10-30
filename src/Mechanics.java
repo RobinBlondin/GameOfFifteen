@@ -46,10 +46,10 @@ public class Mechanics {
     /**
      * Iterates through a list of buttons and returns the first button that has no text.
      */
-    public JButton findEmptyButton(List<List<JButton>> inputList) {
+    public JButton findButtonByText(List<List<JButton>> inputList, String buttonValue) {
         for (List<JButton> list : inputList) {
             for(JButton button : list) {
-                if(button.getText().isEmpty()){
+                if(button.getText().equals(buttonValue)) {
                     return button;
                 }
             }
