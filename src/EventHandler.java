@@ -31,7 +31,7 @@ public class EventHandler implements ActionListener {
             utils.setShuffledLabels(buttonList);
             ui.rewriteBoard();
             ui.revalidateRepaint();
-        } else if (buttonIsGodMode) {
+        } else if(buttonIsGodMode) {
             utils.setSortedLabels(buttonList);
             ui.rewriteBoard();
             ui.revalidateRepaint();

@@ -13,6 +13,7 @@ public class Utils extends JFrame {
         this.ui = ui;
     }
 
+
     /**
      * Takes a 2d array as input and creates and returns a list of lists.
      */
@@ -26,23 +27,21 @@ public class Utils extends JFrame {
 
 
     /**
-     * Takes a list of lists as input replace the text of each button in the order of the
-     * sorted list.
+     * Takes a list of lists as input and flatten it to a 1d list.
      */
-    public void sortList(List<List<JButton>> inputList) {
-        List<JButton> buttons = createFlatList(inputList);
-        for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).setText(numberList.get(i));
-            ui.resetButtonColor(i, buttons.get(i));
+    public List<JButton> createFlatList(List<List<JButton>> inputList) {
+        List<JButton> flattenedList = new ArrayList<>();
+        for(List<JButton> list : inputList) {
+            flattenedList.addAll(list);
         }
-        ui.setButtonList(create2dList(buttons));
+        return flattenedList;
     }
 
 
     /**
-     * Takes a list of strings as input and shuffles it until it is solvable.
+     * Takes a list of strings as input and shuffles it until it solvable.
      */
-    public List<String> createSolvableOrder(List<String> list) {
+    public List<String> shuffleListToSolvableOrder(List<String> list) {
         while(true) {
             Collections.shuffle(list.subList(0, 15));
             int inversions = 0;
@@ -62,41 +61,37 @@ public class Utils extends JFrame {
 
 
     /**
+     * Takes a list of lists as input replace the text of each button in the order of the
+     * sorted list.
+     */
+    public void setSortedLabels(List<List<JButton>> inputList) {
+        updateButtonLabels(numberList, inputList);
+    }
+
+
+    /**
      * Takes a list of lists as input and replace the text of the buttons
      * with a new shuffled order.
      */
-    public void shuffleList(List<List<JButton>> inputList) {
-        List<JButton> buttons = createFlatList(inputList);
-        List<String> shuffledList = createSolvableOrder(new ArrayList<>(numberList));
-
-        for (int i = 0; i < buttons.size(); i++) {
-            buttons.get(i).setText(shuffledList.get(i));
-            ui.resetButtonColor(i, buttons.get(i));
-        }
-
-        ui.setButtonList(create2dList(buttons));
+    public void setShuffledLabels(List<List<JButton>> inputList) {
+        List<String> shuffledList = shuffleListToSolvableOrder(new ArrayList<>(numberList));
+        updateButtonLabels(shuffledList, inputList);
     }
 
-    /**
-     * Takes a list of lists as input and flatten it to a 1d list.
-     */
-    public List<JButton> createFlatList(List<List<JButton>> inputList) {
-        List<JButton> list = new ArrayList<>();
-        for(List<JButton> l : inputList) {
-            list.addAll(l);
-        }
-        return list;
-    }
 
     /**
-     * Takes a list of JButton as input and creates and returns a 2d list.
+     * Updates the labels of the buttons in a list of Buttons with values from a list of strings.
      */
-    public List<List<JButton>> create2dList(List<JButton> flatList) {
-        List<List<JButton>> list = new ArrayList<>();
-        for (int i = 0; i < flatList.size(); i += 4) {
-            list.add(flatList.subList(i, i+4).stream().toList());
+    public void updateButtonLabels(List<String> labelList, List<List<JButton>> inputList) {
+        for (int i = 0; i < inputList.size(); i++) {
+            for (int j = 0; j < inputList.size(); j++) {
+                JButton currentButton = inputList.get(i).get(j);
+                int index = i * inputList.size() + j;
+
+                currentButton.setText(labelList.get(index));
+                ui.resetButtonColors(index, currentButton);
+            }
         }
-        return list;
     }
 
 
@@ -106,7 +101,7 @@ public class Utils extends JFrame {
      */
     public void validatePuzzle (List<JButton> inputList) {
 
-        List<String> buttonNamesList = new ArrayList<>();                      //skapar en ny arraylist som ska stora namnet på alla knappar
+        List<String> buttonNamesList = new ArrayList<>();
         for (JButton button : inputList) {
             buttonNamesList.add(button.getText());
         }
@@ -117,17 +112,17 @@ public class Utils extends JFrame {
     }
 
     /**
-     * Creates a new JFrame with a victory message and a button to start a new game.
+     * Creates a new JFrame with a victory message, and a button to start a new game.
      */
     public void victoryBox() {
 
         JPanel jp = new JPanel();
         JLabel jl = new JLabel("Good Job! You want to play again?");
-        JButton jb = new JButton("Ofcourse");
+        JButton jb = new JButton("Of course");
 
         setVisible(true);
         setSize(230,100);
-        setLocationRelativeTo(ui.getBoard());           //kanske borde vara bound till programmet?
+        setLocationRelativeTo(ui.getBoard());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         add(jp);
@@ -136,7 +131,7 @@ public class Utils extends JFrame {
         jp.add(jb);
 
         jb.addActionListener(l -> {            //lambda
-            this.shuffleList(ui.getButtonList());
+            setShuffledLabels(ui.getButtonList());
             dispose();
         });
     }

@@ -59,7 +59,7 @@ public class Mechanics {
 
 
     /**
-     * Takes a 2d list and a button as input and swaps the text of the input button with the empty button
+     * Takes a 2d list, and a button as input and swaps the text of the input button with the empty button
      * and returns the new updated list.
      */
     public void swapButtons(List<List<JButton>> inputList, JButton button) {
