@@ -78,4 +78,10 @@ public class Mechanics {
         return utils.create2dList(list);
     }
 
+    public void swapButtonText(JButton button1, JButton button2) {
+        String temp = button1.getText();
+        button1.setText(button2.getText());
+        button2.setText(temp);
+    }
+
 }
