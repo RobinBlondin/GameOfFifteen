@@ -38,8 +38,9 @@ public class Mechanics {
 
         int rowDifference = Math.abs(emptyPos[0] - clickedButtonPos[0]);
         int columnDifference = Math.abs(emptyPos[1] - clickedButtonPos[1]);
+        int rowLength = ui.getButtonList().size();
 
-        return (rowDifference == 0 && columnDifference == 1) || (rowDifference == 1 && columnDifference == 0);
+        return (rowDifference == 0 && rowLength - columnDifference > 0) || (rowLength - columnDifference > 0 && columnDifference == 0);
     }
 
 
